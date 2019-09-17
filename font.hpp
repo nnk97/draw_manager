@@ -15,9 +15,9 @@ namespace util::draw
 	using pos_type = float;
 	using position = math::vec2f;
 	using rect = math::vec4f;
-	using color = math::color_rgba;
-	using pack_color = math::color_rgba;
-	using font_t = size_t; //
+	using color = math::color_bgra;
+	using pack_color = math::color_bgra;
+	using font_t = size_t;
 	using tex_id = void*;
 	using matrix = math::matrix4x4f;
 	using vec4f = math::vec4f;

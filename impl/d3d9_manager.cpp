@@ -13,12 +13,13 @@ using namespace util::draw;
 
 constexpr auto D3DFVF_CUSTOM = (D3DFVF_XYZ | D3DFVF_DIFFUSE | D3DFVF_TEX1);
 
-struct d3d9_vertex
-{
-	float pos[ 3 ];
-	D3DCOLOR col;
-	float uv[ 2 ];
-};
+//struct d3d9_vertex
+//{
+//	float pos[ 3 ];
+//	D3DCOLOR col;
+//	float uv[ 2 ];
+//};
+using d3d9_vertex = draw_buffer::draw_vertex;
 
 // This backups shader constant that are overwritten with the cheats
 // to prevent csgo's vertex shaders from breaking (displacements)
@@ -133,18 +134,20 @@ void d3d9_manager::draw()
 
 	const auto copy_draw_data = [ & ](draw_buffer *buf_ptr)
 	{
-		auto *vtx_src = buf_ptr->vertices.data();
-		for (auto i = 0u; i < buf_ptr->vertices.size(); i++)
-		{
-			vtx_dest->pos[0] = vtx_src->pos.x;
-			vtx_dest->pos[1] = vtx_src->pos.y;
-			vtx_dest->pos[2] = 1.f;
-			vtx_dest->col    = vtx_src->col.as_argb();
-			vtx_dest->uv[0]  = vtx_src->uv.x;
-			vtx_dest->uv[1]  = vtx_src->uv.y;
-			vtx_dest++;
-			vtx_src++;
-		}
+		//auto *vtx_src = buf_ptr->vertices.data();
+		//for (auto i = 0u; i < buf_ptr->vertices.size(); i++)
+		//{
+		//	vtx_dest->pos[0] = vtx_src->pos.x;
+		//	vtx_dest->pos[1] = vtx_src->pos.y;
+		//	vtx_dest->pos[2] = 1.f;
+		//	vtx_dest->col    = vtx_src->col.as_argb();
+		//	vtx_dest->uv[0]  = vtx_src->uv.x;
+		//	vtx_dest->uv[1]  = vtx_src->uv.y;
+		//	vtx_dest++;
+		//	vtx_src++;
+		//}
+		std::memcpy(vtx_dest, buf_ptr->vertices.data(), buf_ptr->vertices.size() * sizeof(draw_buffer::draw_vertex));
+		vtx_dest += buf_ptr->indices.size();
 		std::memcpy(idx_dest, buf_ptr->indices.data(), buf_ptr->indices.size() * sizeof(draw_buffer::draw_index));
 		idx_dest += buf_ptr->indices.size();
 	};

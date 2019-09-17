@@ -232,7 +232,7 @@ util::draw::tex_id create_texture()
 	                               const auto min_y,
 	                               const auto max_x,
 	                               const auto max_y,
-	                               const math::color_rgba col)
+	                               const util::draw::color col)
 	{
 		for (int x = min_x; x < max_x; ++x)
 		{
@@ -242,10 +242,10 @@ util::draw::tex_id create_texture()
 			}
 		}
 	};
-	fill_rect(0, 0, 100, 100, math::color_rgba::red());
-	fill_rect(100, 0, 200, 100, math::color_rgba::blue());
-	fill_rect(0, 100, 100, 200, math::color_rgba::green());
-	fill_rect(100, 100, 200, 200, math::color_rgba{226, 238, 37});
+	fill_rect(0, 0, 100, 100, util::draw::color::red());
+	fill_rect(100, 0, 200, 100, util::draw::color::blue());
+	fill_rect(0, 100, 100, 200, util::draw::color::green());
+	fill_rect(100, 100, 200, 200, util::draw::color{226, 238, 37});
 
 	const auto tex = draw_manager->create_texture(200, 200);
 	draw_manager->set_texture_rgba(tex, reinterpret_cast<const uint8_t*>(data.data()), 200, 200);
@@ -275,40 +275,40 @@ void user_thread_impl()
 
 		std::snprintf(buffer, 128, "Current FPS: %d", fps.load());
 		const auto size = buf->text_size(font, buffer);
-		buf->text(font, buffer, {10, 10}, math::color_rgba::white());
+		buf->text(font, buffer, {10, 10}, util::draw::color::white());
 
-		buf->rectangle({10, 10}, {10 + size.x, 10 + size.y}, 2.f, math::color_rgba::white());
+		buf->rectangle({10, 10}, {10 + size.x, 10 + size.y}, 2.f, util::draw::color::white());
 
-		buf->rectangle_filled({0, 120}, {100, 220}, math::color_rgba::white());
+		buf->rectangle_filled({0, 120}, {100, 220}, util::draw::color::white());
 
 		buf->triangle_filled({0, 350},
 		                     {100, 230},
 		                     {200, 350},
-		                     math::color_rgba::red(),
-		                     math::color_rgba::blue(),
-		                     math::color_rgba::green());
+							 util::draw::color::red(),
+							 util::draw::color::blue(),
+							 util::draw::color::green());
 
-		buf->circle_filled({400, 200}, 150, math::color_rgba{0, 0, 0, 0}, math::color_rgba::blue(), 64);
+		buf->circle_filled({400, 200}, 150, util::draw::color{0, 0, 0, 0}, util::draw::color::blue(), 64);
 
 		buf->push_tex_id(tex);
 		buf->prim_reserve(6, 4);
-		buf->prim_rect_uv({400, 400}, {600, 600}, {0, 0}, {1, 1}, math::color_rgba::white());
+		buf->prim_rect_uv({400, 400}, {600, 600}, {0, 0}, {1, 1}, util::draw::color::white());
 
 
 		buf->prim_reserve(6, 4);
-		buf->prim_rect_uv({610, 400}, {810, 600}, {0, 0}, {1, 1}, math::color_rgba::white());
+		buf->prim_rect_uv({610, 400}, {810, 600}, {0, 0}, {1, 1}, util::draw::color::white());
 		buf->pop_tex_id();
 
 		buf->set_blur(10);
-		buf->rectangle_filled({610, 400}, {810, 600}, math::color_rgba::white());
+		buf->rectangle_filled({610, 400}, {810, 600}, util::draw::color::white());
 		buf->set_blur(0);
 
-		buf->set_key_color(math::color_rgba::green());
+		buf->set_key_color(util::draw::color::green());
 		buf->push_tex_id(tex);
 		buf->prim_reserve(6, 4);
-		buf->prim_rect_uv({820, 400}, {1020, 600}, {0, 0}, {1, 1}, math::color_rgba::white());
+		buf->prim_rect_uv({820, 400}, {1020, 600}, {0, 0}, {1, 1}, util::draw::color::white());
 		buf->pop_tex_id();
-		buf->set_key_color(math::color_rgba{0, 0, 0, 0});
+		buf->set_key_color(util::draw::color{0, 0, 0, 0});
 
 		util::draw::position positions[4] = {
 			{600, 50},
@@ -316,11 +316,11 @@ void user_thread_impl()
 			{800, 70},
 			{900, 200}
 		};
-		buf->poly_line(positions, 4, math::color_rgba::white(), 1.f, true);
+		buf->poly_line(positions, 4, util::draw::color::white(), 1.f, true);
 
-		buf->line({600, 150}, {900, 250}, math::color_rgba::white(), 2.f, true);
+		buf->line({600, 150}, {900, 250}, util::draw::color::white(), 2.f, true);
 
-		buf->circle({100, 550}, 100, math::color_rgba::white(), 3.f, 64);
+		buf->circle({100, 550}, 100, util::draw::color::white(), 3.f, 64);
 
 		draw_manager->swap_buffers(buffer_idx);
 

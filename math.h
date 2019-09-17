@@ -254,18 +254,18 @@ namespace math
 		}
 	};
 
-	struct color_rgba
+	struct color_bgra
 	{
-		uint8_t _r, _g, _b, _a;
+		uint8_t _b, _g, _r, _a;
 
 		//color_rgba(const uint8_t r, const uint8_t g, const uint8_t b, const uint8_t a = 255u) : _r(r), _g(g), _b(b), _a(a) {}
-		color_rgba(const int r, const int g, const int b, const int a = 255u)
+		color_bgra(const int r, const int g, const int b, const int a = 255u)
 			: _r(r),
-			  _g(g),
-			  _b(b),
-			  _a(a) {}
+			_g(g),
+			_b(b),
+			_a(a) {}
 
-		color_rgba(const uint32_t val)
+		color_bgra(const uint32_t val)
 		{
 			_r = (val >> 24);
 			_g = (val >> 16) & 0xFF;
@@ -303,29 +303,29 @@ namespace math
 			return _a;
 		}
 
-		static color_rgba white()
+		static color_bgra white()
 		{
-			return color_rgba{255, 255, 255};
+			return color_bgra{255, 255, 255};
 		}
 
-		static color_rgba black()
+		static color_bgra black()
 		{
-			return color_rgba{0, 0, 0};
+			return color_bgra{0, 0, 0};
 		}
 
-		static color_rgba red()
+		static color_bgra red()
 		{
-			return color_rgba{235, 64, 52};
+			return color_bgra{235, 64, 52};
 		}
 
-		static color_rgba green()
+		static color_bgra green()
 		{
-			return color_rgba{52, 217, 77};
+			return color_bgra{52, 217, 77};
 		}
 
-		static color_rgba blue()
+		static color_bgra blue()
 		{
-			return color_rgba{34, 108, 199};
+			return color_bgra{34, 108, 199};
 		}
 	};
 

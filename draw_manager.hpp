@@ -106,16 +106,19 @@ namespace util::draw
 			draw_vertex(const position &p, const position &u, const std::uint32_t c)
 				: pos(p),
 				  uv(u),
-				  col(c) { }
+				  col(c),
+				  z(0.f) { }
 
 			draw_vertex(const position &p, const position &u, const pack_color c)
 				: pos(p),
 				  uv(u),
-				  col(c) { }
+				  col(c),
+				  z(0.f) { }
 
 			position pos   = {};
+			float	 z;
+			pack_color col = 0u; //B8G8R8A8 actually
 			position uv    = {};
-			pack_color col = 0u; //R8G8B8A8
 		};
 
 		std::vector<draw_cmd> cmds        = {};
