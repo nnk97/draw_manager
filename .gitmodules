@@ -1,0 +1,6 @@
+[submodule "freetype2"]
+	path = freetype2
+	url = https://git.savannah.nongnu.org/git/freetype/freetype2.git
+[submodule "stb"]
+	path = stb
+	url = https://github.com/nothings/stb.git

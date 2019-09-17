@@ -17,7 +17,7 @@
 #define STBRP_ASSERT(x)    assert(x)
 #define STBRP_STATIC
 #define STB_RECT_PACK_IMPLEMENTATION
-#include <stb/stb_rectpack.h>
+#include <stb_rect_pack.h>
 
 const unsigned int FONT_ATLAS_DEFAULT_TEX_DATA_ID = 0x80000000;
 
